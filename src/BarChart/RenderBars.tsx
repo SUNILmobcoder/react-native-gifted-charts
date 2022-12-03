@@ -1,11 +1,17 @@
-import React, {Component} from 'react';
-import {View, TouchableOpacity, Animated, Text, ColorValue} from 'react-native';
-import ThreeDBar from '../Components/ThreeDBar';
-import AnimatedBar from '../Components/AnimatedBar';
-import LinearGradient from 'react-native-linear-gradient';
-import Animated2DWithGradient from './Animated2DWithGradient';
-import {Style} from 'util';
-import Svg, {Defs, Rect} from 'react-native-svg';
+import React, { Component } from "react";
+import {
+  View,
+  TouchableOpacity,
+  Animated,
+  Text,
+  ColorValue,
+} from "react-native";
+import ThreeDBar from "../Components/ThreeDBar";
+import AnimatedBar from "../Components/AnimatedBar";
+import LinearGradient from "react-native-linear-gradient";
+import Animated2DWithGradient from "./Animated2DWithGradient";
+import { Style } from "util";
+import Svg, { Defs, Rect } from "react-native-svg";
 
 type Props = {
   style?: any;
@@ -150,37 +156,39 @@ const RenderBars = (props: Props) => {
                 30) +
               spacing / 2,
             left: -6,
-            position: 'absolute',
+            position: "absolute",
             bottom: (rotateLabel ? -40 : -25) - barMarginBottom,
           },
           rotateLabel
             ? props.horizontal
-              ? {transform: [{rotate: '330deg'}]}
+              ? { transform: [{ rotate: "330deg" }] }
               : {
                   transform: [
-                    {rotate: value < 0 ? '240deg' : '60deg'},
-                    {translateX: value < 0 ? 56 : 0},
-                    {translateY: value < 0 ? 32 : 0},
+                    { rotate: value < 0 ? "240deg" : "60deg" },
+                    { translateX: value < 0 ? 56 : 0 },
+                    { translateY: value < 0 ? 32 : 0 },
                   ],
                 }
             : props.horizontal
-            ? {transform: [{rotate: '-90deg'}]}
+            ? { transform: [{ rotate: "-90deg" }] }
             : value < 0
             ? {
                 transform: [
-                  {rotate: '180deg'},
-                  {translateY: autoShiftLabels ? 0 : 32},
+                  { rotate: "180deg" },
+                  { translateY: autoShiftLabels ? 0 : 32 },
                 ],
               }
             : {},
-        ]}>
+        ]}
+      >
         {item.labelComponent ? (
           item.labelComponent()
         ) : (
           <Text
-            style={labelTextStyle || {textAlign: 'center'}}
-            numberOfLines={xAxisTextNumberOfLines}>
-            {label || ''}
+            style={labelTextStyle || { textAlign: "center" }}
+            numberOfLines={xAxisTextNumberOfLines}
+          >
+            {label || ""}
           </Text>
         )}
       </View>
@@ -190,7 +198,7 @@ const RenderBars = (props: Props) => {
   const renderAnimatedLabel = (
     label: String,
     labelTextStyle: any,
-    value: number,
+    value: number
   ) => {
     return (
       <Animated.View
@@ -203,27 +211,29 @@ const RenderBars = (props: Props) => {
                 props.barWidth ||
                 30) +
               spacing / 2,
-            position: 'absolute',
+            position: "absolute",
             left: -4,
             bottom: (rotateLabel ? -40 : -25) - barMarginBottom,
             opacity: appearingOpacity,
           },
-          value < 0 && {transform: [{rotate: '180deg'}]},
+          value < 0 && { transform: [{ rotate: "180deg" }] },
           rotateLabel
             ? props.horizontal
-              ? {transform: [{rotate: '330deg'}]}
-              : {transform: [{rotate: '60deg'}]}
+              ? { transform: [{ rotate: "330deg" }] }
+              : { transform: [{ rotate: "60deg" }] }
             : props.horizontal
-            ? {transform: [{rotate: '-90deg'}]}
+            ? { transform: [{ rotate: "-90deg" }] }
             : {},
-        ]}>
+        ]}
+      >
         {item.labelComponent ? (
           item.labelComponent()
         ) : (
           <Text
-            style={labelTextStyle || {textAlign: 'center'}}
-            numberOfLines={xAxisTextNumberOfLines}>
-            {label || ''}
+            style={labelTextStyle || { textAlign: "center" }}
+            numberOfLines={xAxisTextNumberOfLines}
+          >
+            {label || ""}
           </Text>
         )}
       </Animated.View>
@@ -237,9 +247,9 @@ const RenderBars = (props: Props) => {
         <LinearGradient
           style={[
             {
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
+              position: "absolute",
+              width: "100%",
+              height: "100%",
               borderRadius: props.barBorderRadius || item.barBorderRadius || 0,
             },
             props.roundedBottom && {
@@ -263,22 +273,23 @@ const RenderBars = (props: Props) => {
               borderTopRightRadius: (item.barWidth || props.barWidth || 30) / 2,
             },
           ]}
-          start={{x: 0, y: 0}}
-          end={{x: 0, y: 1}}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
           colors={[
-            item.gradientColor || props.gradientColor || 'white',
-            item.frontColor || props.frontColor || 'black',
-          ]}>
+            item.gradientColor || props.gradientColor || "white",
+            item.frontColor || props.frontColor || "black",
+          ]}
+        >
           {props.cappedBars && (
             <View
               style={{
-                position: 'absolute',
-                width: '100%',
+                position: "absolute",
+                width: "100%",
                 height:
                   item.capThickness === 0
                     ? 0
                     : item.capThickness || props.capThickness || 6,
-                backgroundColor: item.capColor || props.capColor || 'gray',
+                backgroundColor: item.capColor || props.capColor || "gray",
                 borderTopLeftRadius:
                   item.capRadius === 0
                     ? 0
@@ -312,21 +323,22 @@ const RenderBars = (props: Props) => {
           <View
             style={[
               {
-                position: 'absolute',
+                position: "absolute",
                 top: (item.barWidth || props.barWidth || 30) * -1,
                 height: item.barWidth || props.barWidth || 30,
                 width: item.barWidth || props.barWidth || 30,
                 justifyContent:
                   (props.horizontal && !props.intactTopLabel) || item.value < 0
-                    ? 'center'
-                    : 'flex-end',
-                alignItems: 'center',
+                    ? "center"
+                    : "flex-end",
+                alignItems: "center",
               },
-              item.value < 0 && {transform: [{rotate: '180deg'}]},
+              item.value < 0 && { transform: [{ rotate: "180deg" }] },
               props.horizontal &&
-                !props.intactTopLabel && {transform: [{rotate: '270deg'}]},
+                !props.intactTopLabel && { transform: [{ rotate: "270deg" }] },
               item.topLabelContainerStyle,
-            ]}>
+            ]}
+          >
             {item.topLabelComponent()}
           </View>
         )}
@@ -340,7 +352,7 @@ const RenderBars = (props: Props) => {
       ? (item.topLabelComponentHeight || 30) +
         (Math.abs(item.value) * (containerHeight || 200)) / (maxValue || 200)
       : (Math.abs(item.value) * (containerHeight || 200)) / (maxValue || 200)) -
-      barMarginBottom,
+      barMarginBottom
   );
 
   let leftSpacing = initialSpacing;
@@ -355,14 +367,14 @@ const RenderBars = (props: Props) => {
       <TouchableOpacity
         disabled={item.disablePress || props.disablePress}
         activeOpacity={props.activeOpacity || 0.2}
-        onPress={() => {
+        onPress={(e) => {
           if (renderTooltip) {
             setSelectedIndex(index);
           }
           item.onPress
-            ? item.onPress()
-            : props.onPress
-            ? props.onPress(item, index)
+            ? item.onPress(e, item)
+            : props.onPress(e, item)
+            ? props.onPress(e, item)
             : null;
         }}
         style={[
@@ -380,13 +392,14 @@ const RenderBars = (props: Props) => {
                   (Math.abs(item.value) * (containerHeight || 200)) /
                   (maxValue || 200),
               },
-              {rotateZ: '180deg'},
+              { rotateZ: "180deg" },
             ],
           },
           // !isThreeD && !item.showGradient && !props.showGradient &&
           // { backgroundColor: item.frontColor || props.frontColor || 'black' },
-          side !== 'right' && {zIndex: data.length - index},
-        ]}>
+          side !== "right" && { zIndex: data.length - index },
+        ]}
+      >
         {/* {props.showVerticalLines && (
           <View
             style={{
@@ -404,7 +417,7 @@ const RenderBars = (props: Props) => {
           <View
             style={{
               zIndex: 2,
-              position: 'absolute',
+              position: "absolute",
               height: props.xAxisIndicesHeight,
               width: props.xAxisIndicesWidth,
               bottom: 0,
@@ -429,10 +442,10 @@ const RenderBars = (props: Props) => {
                 props.sideWidth ||
                 (item.barWidth || props.barWidth || 30) / 2
               }
-              side={side || 'left'}
-              frontColor={item.frontColor || props.frontColor || ''}
-              sideColor={item.sideColor || props.sideColor || ''}
-              topColor={item.topColor || props.topColor || ''}
+              side={side || "left"}
+              frontColor={item.frontColor || props.frontColor || ""}
+              sideColor={item.sideColor || props.sideColor || ""}
+              topColor={item.topColor || props.topColor || ""}
               showGradient={item.showGradient || props.showGradient || false}
               gradientColor={item.gradientColor || props.gradientColor}
               topLabelComponent={item.topLabelComponent}
@@ -442,7 +455,7 @@ const RenderBars = (props: Props) => {
                 minHeight,
                 (Math.abs(item.value) * (containerHeight || 200)) /
                   (maxValue || 200) -
-                  barMarginBottom,
+                  barMarginBottom
               )}
               intactTopLabel={props.intactTopLabel}
               horizontal={props.horizontal}
@@ -454,7 +467,7 @@ const RenderBars = (props: Props) => {
               }
               patternId={item.patternId || props.patternId}
               style={{}}
-              color={''}
+              color={""}
               topLabelContainerStyle={item.topLabelContainerStyle}
               width={item.barWidth || props.barWidth || 30}
               sideWidth={
@@ -464,10 +477,10 @@ const RenderBars = (props: Props) => {
               }
               barStyle={barStyle}
               item={item}
-              side={side || 'left'}
-              frontColor={item.frontColor || props.frontColor || ''}
-              sideColor={item.sideColor || props.sideColor || ''}
-              topColor={item.topColor || props.topColor || ''}
+              side={side || "left"}
+              frontColor={item.frontColor || props.frontColor || ""}
+              sideColor={item.sideColor || props.sideColor || ""}
+              topColor={item.topColor || props.topColor || ""}
               showGradient={item.showGradient || props.showGradient || false}
               gradientColor={item.gradientColor || props.gradientColor}
               topLabelComponent={item.topLabelComponent || Function}
@@ -478,7 +491,7 @@ const RenderBars = (props: Props) => {
                 minHeight,
                 (Math.abs(item.value) * (containerHeight || 200)) /
                   (maxValue || 200) -
-                  barMarginBottom,
+                  barMarginBottom
               )}
               value={item.value}
             />
@@ -496,13 +509,13 @@ const RenderBars = (props: Props) => {
               roundedBottom={props.roundedBottom || false}
               roundedTop={props.roundedTop || false}
               gradientColor={props.gradientColor}
-              frontColor={props.frontColor || 'black'}
+              frontColor={props.frontColor || "black"}
               containerHeight={containerHeight}
               maxValue={maxValue}
               height={Math.max(
                 minHeight,
                 (Math.abs(item.value) * (containerHeight || 200)) /
-                  (maxValue || 200),
+                  (maxValue || 200)
               )}
               minHeight={minHeight}
               barMarginBottom={barMarginBottom}
@@ -530,13 +543,13 @@ const RenderBars = (props: Props) => {
             roundedTop={props.roundedTop || false}
             gradientColor={props.gradientColor}
             noGradient
-            frontColor={props.frontColor || 'black'}
+            frontColor={props.frontColor || "black"}
             containerHeight={containerHeight}
             maxValue={maxValue}
             height={Math.max(
               minHeight,
               (Math.abs(item.value) * (containerHeight || 200)) /
-                (maxValue || 200),
+                (maxValue || 200)
             )}
             minHeight={minHeight}
             barMarginBottom={barMarginBottom}
@@ -562,13 +575,13 @@ const RenderBars = (props: Props) => {
             gradientColor={props.gradientColor}
             noGradient
             noAnimation
-            frontColor={props.frontColor || 'black'}
+            frontColor={props.frontColor || "black"}
             containerHeight={containerHeight}
             maxValue={maxValue}
             height={Math.max(
               minHeight,
               (Math.abs(item.value) * (containerHeight || 200)) /
-                (maxValue || 200),
+                (maxValue || 200)
             )}
             minHeight={minHeight}
             barMarginBottom={barMarginBottom}
@@ -588,7 +601,7 @@ const RenderBars = (props: Props) => {
       {renderTooltip && selectedIndex === index && (
         <View
           style={{
-            position: 'absolute',
+            position: "absolute",
             bottom: barHeight + 60,
             left:
               index === data.length - 1
@@ -596,7 +609,8 @@ const RenderBars = (props: Props) => {
                 : leftSpacing -
                   (item.leftShiftForTooltip ?? leftShiftForTooltip),
             zIndex: 1000,
-          }}>
+          }}
+        >
           {renderTooltip(item, index)}
         </View>
       )}
